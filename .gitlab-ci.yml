@@ -53,10 +53,6 @@ spec::test:
   script:
     - 'npm test'
   stage: test
-  artifacts:
-    when: always
-    reports:
-      junit: $MOCHA_DIR/**/*.xml
 
 prep::stripped::build:
   artifacts:
