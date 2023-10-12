@@ -61,12 +61,8 @@ prep::stripped::build:
       - node_modules
   image: *nodeversion
   cache: *spec__audit_-_cache
-  variables:
-    SECURE_FILES_DOWNLOAD_PATH: '/tmp'
   script:
     - pnpm i --production
-    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
-    - tar xzvf ./tmp/public.tar.gz
   stage: build
 
 build:container:latest:
@@ -83,7 +79,7 @@ build:container:latest:
     TAG: 'latest'
   script: *build_container_dev_-_script
   only:
-    - master
+    - main
 
 build:container:dev:
   dependencies:
