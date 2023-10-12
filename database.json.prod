@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "user": {"ENV": "user"},
+    "driver": "cockroachdb",
+    "database": {"ENV": "database"},
+    "host": { "ENV": "host" },
+    "port": 26257,
+    "ssl": {
+      "sslrootcert": { "ENV": "ca_crt" },
+      "sslcert": { "ENV": "ssl_cert" },
+      "sslkey": { "ENV": "ssl_key" },
+      "sslmode": { "ENV": "ssl_mode" }
+    }
+  }
+}
