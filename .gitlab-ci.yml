@@ -63,7 +63,6 @@ prep::stripped::build:
     expire_in: 1d
     paths:
       - node_modules
-      - public
   image: *nodeversion
   cache: *spec__audit_-_cache
   variables:
