@@ -57,6 +57,15 @@ const config = rc(prefix, {
     // test123: {
     //   secret: '123456'
     // }
+  },
+  s3: {
+    bucket: 'bucket',
+    endPoint: 'iporhost',
+    region: 'us-east-1',
+    port: 9000,
+    useSSL: false,
+    accessKey: 'key',
+    secretKey: 'secret'
   }
 });
 
