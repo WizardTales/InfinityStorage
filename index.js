@@ -41,7 +41,7 @@ const start = async () => {
 dbm.up().then(() => {
   const config = dbm.config.getCurrent();
 
-  const crdb = new CRDB(options.config);
+  const crdb = new CRDB(config.settings);
   const pool = crdb.pool();
   fastify.decorate('pg', { pool });
 
