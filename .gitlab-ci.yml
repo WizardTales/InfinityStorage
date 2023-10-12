@@ -66,8 +66,6 @@ prep::stripped::build:
   stage: build
 
 build:container:latest:
-  before_script:
-    - cp config.js.template config.js
   dependencies:
     - prep::stripped::build
   image:
