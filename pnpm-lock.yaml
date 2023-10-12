@@ -11,12 +11,6 @@ dependencies:
   '@fastify/multipart':
     specifier: ^8.0.0
     version: 8.0.0
-  '@fastify/static':
-    specifier: ^6.9.0
-    version: 6.9.0
-  '@isaacs/ttlcache':
-    specifier: ^1.2.2
-    version: 1.2.2
   bluebird:
     specifier: ^3.7.2
     version: 3.7.2
@@ -255,11 +249,6 @@ packages:
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
-
-  /@isaacs/ttlcache@1.2.2:
-    resolution: {integrity: sha512-UvS9r/yugpqc/uLRdmxfFkaPGfjvVQPjHn3cGFWiT5K1H8o0t3MsRUAB5xs//4dNEmSSi6WpMqVpMjKbsVv82g==}
-    engines: {node: '>=12'}
-    dev: false
 
   /@lukeed/ms@2.0.1:
     resolution: {integrity: sha512-Xs/4RZltsAL7pkvaNStUQt7netTkyxrS0K+RILcVr3TRMS/ToOg4I6uNfhB9SlGsnWBym4U+EaXq0f0cEMNkHA==}

@@ -20,8 +20,6 @@
   "dependencies": {
     "@fastify/cors": "^8.2.1",
     "@fastify/multipart": "^8.0.0",
-    "@fastify/static": "^6.9.0",
-    "@isaacs/ttlcache": "^1.2.2",
     "bluebird": "^3.7.2",
     "crdb-pg": "^1.4.1",
     "db-migrate": "1.0.0-beta.27",
