@@ -25,7 +25,7 @@ files and also to get corruption checkups in place. This aspect is scalable, but
 more or less compute expensive.
 
 - It creates stores and file references in its metadata db
-- It creates a file hash name for the object on the target s3 instead of using the real name
+- It creates a file uuid for the object on the target s3 instead of using the real name
 - It provides RBAC permission capabilities on store and file level
 - It issues temporary file accesses (a few seconds) on the s3 upon a download request
 - It stores encryption metadata
