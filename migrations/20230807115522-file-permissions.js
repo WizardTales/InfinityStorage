@@ -26,6 +26,17 @@ exports.migrate = async (db, opt) => {
       type: 'uuid',
       notNull: true
     },
+    encryptionKey: {
+      type: 'BYTES',
+      length: 256,
+      notNull: false
+    },
+    // we don't need to search for this necessarily efficiently
+    permissions: {
+      type: 'BYTES',
+      length: 1,
+      notNull: false
+    },
     createdAt: {
       type: 'timestamptz',
       notNull: true,
@@ -40,7 +51,6 @@ exports.migrate = async (db, opt) => {
         special: 'CURRENT_TIMESTAMP'
       }
     }
-
   });
 };
 

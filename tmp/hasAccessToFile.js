@@ -19,7 +19,7 @@ export default {
       rows: [permission]
     } = await Promise.all(
       pool.query(
-        SQL`SELECT s."ownerId", p."userId" FROM "file" f
+        SQL`SELECT s."ownerId", p."userId", p."permission" FROM "file" f
             INNER JOIN "storage" s ON (f."storageId" = s."id")
             LEFT JOIN "filePermission" p ON (f."id" = p."fileId"
               AND p."userId" = ${session.id})

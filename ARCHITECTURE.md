@@ -38,6 +38,16 @@ What it can not do:
 - Search efficiently for content inside of files (this might be possible to mitigate if no encryption is involved)
 - Edit files without completely reuploading them (unless a non object store implementation would exist)
 
+## Data structure
+
+The data structure consists out of a storage container, files and a directory listing.
+The storage container contains either one or many files. They can enforce certain things
+on the files it contains, but may also just contain only a single file. A file is part of
+the container and actually references a file stored on some storage location.
+Last but not least the directory listing lists a hirarchical structure. An item of this is either
+a container, a file or both. An item itself is either a directory, or a file entry. If an item is a
+file+container and itself a file entry, this would be a single file container.
+
 # Encryption
 
 To secure files an operator may want to encrypt all their data. To make this
@@ -116,3 +126,8 @@ attacker gets knowledge of both, security degrades to the weakest link
 
 Additionally we will offer a certificate based login and encryption system with
 enforcing policies for systems that require to get even higher security standards.
+
+# Versioning
+
+Versioning can be easily supported but wont be part of the first standard
+implementation.
