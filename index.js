@@ -3,6 +3,7 @@ import Fastify from 'fastify';
 import { Client as MClient } from 'minio';
 import multipart from '@fastify/multipart';
 import upload from './lib/controllers/upload.js';
+import routes from './lib/routes/index.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import cors from '@fastify/cors';
@@ -24,6 +25,9 @@ const dbm = DBMigrate.getInstance(true);
 fastify.decorate('s3', minioClient);
 fastify.register(multipart);
 fastify.register(cors, config.server.cors);
+
+// Routes
+fastify.register(routes);
 
 // Declare a route
 fastify.post('/api/d1', upload.d1);
