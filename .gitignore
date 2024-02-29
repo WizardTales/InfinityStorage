@@ -22,3 +22,5 @@ rs.txt
 .idea
 .tern-port
 /public
+.*rc
+.tasks.md
