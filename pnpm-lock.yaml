@@ -41,6 +41,9 @@ dependencies:
   rc_array:
     specifier: ^1.0.0
     version: 1.0.0(rc@1.2.8)
+  sql-template-tag:
+    specifier: ^5.2.0
+    version: 5.2.0
   uuid-random:
     specifier: ^1.3.2
     version: 1.3.2
@@ -5557,6 +5560,14 @@ packages:
         integrity: sha512-UXhXR2869FQaD+GMly8jAMCRZ94nU5KcrFetZfWEMd+LVVG6y0ExgHAhatEcKZ/wk8YcKPdi+hiD2wm75lq3/Q==
       }
     engines: { node: '>=4.0.0' }
+    dev: false
+
+  /sql-template-tag@5.2.0:
+    resolution:
+      {
+        integrity: sha512-VVrlwWfOvG5hhDkcaoxmwv7uHdpJfAYImfKq37GVGRCYHjvlVdHpNkG8ITOIJlwAlSQDesS4arPfKif/19zjoQ==
+      }
+    engines: { node: '>=14' }
     dev: false
 
   /ssh2@1.4.0:
