@@ -4,13 +4,13 @@ import { Client as MClient } from 'minio';
 import multipart from '@fastify/multipart';
 import upload from './lib/controllers/upload.js';
 import routes from './lib/routes/index.js';
-import path from 'path';
-import { fileURLToPath } from 'url';
+// import path from 'path';
+// import { fileURLToPath } from 'url';
 import cors from '@fastify/cors';
 import config from './config.js';
 import CRDB from 'crdb-pg';
 import DBMigrate from 'db-migrate';
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 config.s3.port = Number(config.s3.port);
 if (typeof config.s3.useSSL === 'string') {
