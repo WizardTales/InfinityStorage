@@ -4,6 +4,7 @@ import { Client as MClient } from 'minio';
 import multipart from '@fastify/multipart';
 import upload from './lib/controllers/upload.js';
 import routes from './lib/routes/index.js';
+import Promise from 'bluebird';
 // import path from 'path';
 // import { fileURLToPath } from 'url';
 import cors from '@fastify/cors';
@@ -22,7 +23,7 @@ const fastify = Fastify({ logger: true });
 
 const dbm = DBMigrate.getInstance(true);
 
-fastify.decorate('s3', minioClient);
+fastify.decorate('s3', Promise.promisifyAll(minioClient, { suffix: 'A' }));
 fastify.register(multipart);
 fastify.register(cors, config.server.cors);
 
@@ -35,6 +36,13 @@ fastify.post('/api/d1', upload.d1);
 // Run the server!
 const start = async () => {
   try {
+    const bucketName = config?.s3?.bucket;
+    const exists = await fastify.s3.bucketExistsA(bucketName);
+    if (!exists) {
+      fastify.log.error(`Bucket ${bucketName} does not exists!`);
+      process.exit(1);
+    }
+
     await fastify.listen(config.server.listen);
   } catch (err) {
     fastify.log.error(err);
@@ -43,9 +51,9 @@ const start = async () => {
 };
 
 dbm.up().then(() => {
-  const config = dbm.config.getCurrent();
+  const { settings } = dbm.config.getCurrent();
 
-  const crdb = new CRDB(config.settings);
+  const crdb = new CRDB(settings);
   const pool = crdb.pool();
   fastify.decorate('pg', { pool });
 
