@@ -18,13 +18,16 @@
     ]
   },
   "dependencies": {
+    "@fastify/cookie": "^9.3.1",
     "@fastify/cors": "^8.2.1",
     "@fastify/multipart": "^8.0.0",
+    "@fastify/session": "^10.7.0",
     "bluebird": "^3.7.2",
     "crdb-pg": "^1.4.1",
     "db-migrate": "1.0.0-beta.27",
     "db-migrate-cockroachdb": "^5.7.2",
     "fastify": "^4.15.0",
+    "fastify-plugin": "^4.5.1",
     "file-type": "^18.5.0",
     "minio": "^7.1.3",
     "pg": "^8.11.3",
