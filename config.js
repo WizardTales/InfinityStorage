@@ -66,6 +66,9 @@ const config = rc(prefix, {
     useSSL: false,
     accessKey: 'key',
     secretKey: 'secret'
+  },
+  sp: {
+    domain: 'infinitystorage.wizardtales.com'
   }
 });
 
