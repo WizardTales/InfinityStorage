@@ -5,7 +5,7 @@ import Promise from 'bluebird';
 
 export default {
   request: async (request, { username, password, ip }) => {
-    const { authenticator } = request.server.plugins.sp;
+    const authenticator = request.sp;
     // const { rows } = await pool.query(
     //  'SELECT * FROM "user" WHERE username = $1 AND password = $2',
     //  [username, password]
