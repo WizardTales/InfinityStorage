@@ -11,6 +11,9 @@ import cors from '@fastify/cors';
 import config from './config.js';
 import CRDB from 'crdb-pg';
 import DBMigrate from 'db-migrate';
+import fastifySession from '@fastify/session';
+import fastifyCookie from '@fastify/cookie';
+
 // const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 config.s3.port = Number(config.s3.port);
@@ -26,6 +29,18 @@ const dbm = DBMigrate.getInstance(true);
 fastify.decorate('s3', Promise.promisifyAll(minioClient, { suffix: 'A' }));
 fastify.register(multipart);
 fastify.register(cors, config.server.cors);
+
+fastify.register(fastifyCookie);
+fastify.register(fastifySession, {
+  secret: '2b2fd0faa75e6a9f99d513911e7a5cb5802ca65b635bf587e3e784eb51e051a4', // Secret testing  purposes only!
+  cookie: {
+    secure: false
+  }
+});
+
+fastify.addHook('onRequest', async (request, reply) => {
+  request.user = request.session.user;
+});
 
 // Routes
 fastify.register(routes);
