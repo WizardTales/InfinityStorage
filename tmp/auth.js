@@ -28,7 +28,7 @@ export default {
     }
 
     return result;
-  },
+  }
 
-  pin: 'service:user,command:auth'
+  // pin: 'service:user,command:auth'
 };
