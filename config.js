@@ -68,6 +68,7 @@ const config = rc(prefix, {
     secretKey: 'secret'
   },
   sp: {
+    providesAge: true,
     domain: 'infinitystorage.wizardtales.com'
   }
 });
