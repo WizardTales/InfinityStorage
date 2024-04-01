@@ -13,6 +13,7 @@ import CRDB from 'crdb-pg';
 import DBMigrate from 'db-migrate';
 import fastifySession from '@fastify/session';
 import fastifyCookie from '@fastify/cookie';
+import spPlugin from './lib/plugins/sp.js';
 
 // const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -42,11 +43,13 @@ fastify.addHook('onRequest', async (request, reply) => {
   request.user = request.session.user;
 });
 
+fastify.addHook('preHandler', spPlugin);
+
 // Routes
 fastify.register(routes);
 
 // Declare a route
-fastify.post('/api/d1', upload.d1);
+fastify.get('/api/d1', upload.d1);
 
 // Run the server!
 const start = async () => {
