@@ -5,8 +5,7 @@ import multipart from '@fastify/multipart';
 import upload from './lib/controllers/upload.js';
 import routes from './lib/routes/index.js';
 import Promise from 'bluebird';
-// import path from 'path';
-// import { fileURLToPath } from 'url';
+import storageService from './lib/services/storage.js';
 import cors from '@fastify/cors';
 import config from './config.js';
 import CRDB from 'crdb-pg';
@@ -39,11 +38,19 @@ fastify.register(fastifySession, {
   }
 });
 
-fastify.addHook('onRequest', async (request, reply) => {
-  request.user = request.session.user;
-});
-
 fastify.addHook('preHandler', spPlugin);
+
+fastify.addHook('onRequest', async (request, reply) => {
+  if (request.session.user) {
+    request.user = request.session.user;
+    const { pool } = request.server.pg;
+    const { msg: storage } = await storageService.getStorageById(
+      pool,
+      request.user.id
+    );
+    request.storage = storage;
+  }
+});
 
 // Routes
 fastify.register(routes);
