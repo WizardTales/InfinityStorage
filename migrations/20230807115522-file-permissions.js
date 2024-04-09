@@ -28,13 +28,11 @@ exports.migrate = async (db, opt) => {
     },
     encryptionKey: {
       type: 'BYTES',
-      length: 256,
       notNull: false
     },
     // we don't need to search for this necessarily efficiently
     permissions: {
-      type: 'BYTES',
-      length: 1,
+      type: 'INT2',
       notNull: false
     },
     createdAt: {
