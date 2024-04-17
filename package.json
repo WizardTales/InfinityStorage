@@ -25,6 +25,7 @@
     "bluebird": "^3.7.2",
     "crdb-pg": "^1.4.1",
     "crypto-random-string": "^5.0.0",
+    "dayjs": "^1.11.10",
     "db-migrate": "1.0.0-beta.27",
     "db-migrate-cockroachdb": "^5.7.2",
     "fastify": "^4.15.0",

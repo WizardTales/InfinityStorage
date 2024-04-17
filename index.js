@@ -13,6 +13,7 @@ import DBMigrate from 'db-migrate';
 import fastifySession from '@fastify/session';
 import fastifyCookie from '@fastify/cookie';
 import spPlugin from './lib/plugins/sp.js';
+import SQL from 'sql-template-tag';
 
 // const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -81,6 +82,13 @@ dbm.up().then(() => {
   const crdb = new CRDB(settings);
   const pool = crdb.pool();
   fastify.decorate('pg', { pool });
+
+  pool
+    .retry(async (client) => {
+      await client.query(SQL`DELETE FROM "storage"`);
+      await client.query(SQL`DELETE FROM "user"`);
+    })
+    .then(() => console.log('Cleared'));
 
   start();
 });
