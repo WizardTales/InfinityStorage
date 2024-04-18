@@ -57,8 +57,8 @@
   },
   "pnpm": {
     "overrides": {
-      "pg-native": "2.2.0",
-      "pg": "8.11.5"
+      "pg-native": "^3.0.1",
+      "pg": "^8.11.5"
     }
   },
   "author": "",
