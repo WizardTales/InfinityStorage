@@ -39,6 +39,7 @@ exports.migrate = async (db, opt) => {
       }
     }
   });
+  await db.addIndex('lock', 'findLock', ['fileId', 'expireAt']);
 };
 
 exports._meta = {
