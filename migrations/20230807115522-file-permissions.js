@@ -2,7 +2,7 @@
 
 exports.migrate = async (db, opt) => {
   const type = opt.dbm.dataType;
-  return db.createTable('filePermission', {
+  await db.createTable('filePermission', {
     id: {
       type: 'uuid',
       primaryKey: true,
@@ -50,6 +50,12 @@ exports.migrate = async (db, opt) => {
       }
     }
   });
+  await db.addIndex(
+    'filePermission',
+    'findPermission',
+    ['fileId', 'userId'],
+    true
+  );
 };
 
 exports._meta = {
