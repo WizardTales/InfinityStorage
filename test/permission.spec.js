@@ -55,12 +55,12 @@ describe('Permission service', function () {
 
     const {
       data: { id }
-    } = await createFile(pool, minioClient, dummyFile, storageId);
+    } = await createFile(pool, minioClient, dummyFile, userId, storageId);
     fileId = id;
   });
 
   after(async function () {
-    await deleteFile(pool, minioClient, fileId, storageId);
+    await deleteFile(pool, minioClient, fileId, userId, storageId);
   });
 
   it('should grant access to user', async function () {

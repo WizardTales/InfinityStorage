@@ -50,7 +50,7 @@ describe('file locking service', function (done) {
 
     const {
       data: { id }
-    } = await createFile(pool, minioClient, dummyFile, storageId);
+    } = await createFile(pool, minioClient, dummyFile, userId, storageId);
     fileId = id;
   });
 
@@ -69,6 +69,7 @@ describe('file locking service', function (done) {
       pool,
       minioClient,
       fileId,
+      userId,
       storageId
     );
 
