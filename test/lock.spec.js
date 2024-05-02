@@ -55,7 +55,7 @@ describe('file locking service', function (done) {
   });
 
   after(async function () {
-    await deleteFile(pool, minioClient, fileId, storageId);
+    await deleteFile(pool, minioClient, fileId, userId, storageId);
   });
 
   it('should lock', async function () {
