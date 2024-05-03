@@ -40,13 +40,13 @@ What it can not do:
 
 ## Data structure
 
-The data structure consists out of a storage container, files and a directory listing.
-The storage container contains either one or many files. They can enforce certain things
-on the files it contains, but may also just contain only a single file. A file is part of
-the container and actually references a file stored on some storage location.
-Last but not least the directory listing lists a hirarchical structure. An item of this is either
-a container, a file or both. An item itself is either a directory, or a file entry. If an item is a
-file+container and itself a file entry, this would be a single file container.
+The data structure consists out of a storage reference, files and a directory listing.
+The storage reference contains either one or many files. They can enforce certain things
+on the files it contains (may be separated into policies instead though),
+but may also just contain only a single file. A file is referencing one container and actually
+references a file stored on some storage location specified either in the global store or the storage reference.
+Last but not least the directory listing lists a hirarchical structure. The directory listing itself only contains
+directories, files reference their actual storage directory and can be found in the file metadata table.
 
 # Encryption
 
