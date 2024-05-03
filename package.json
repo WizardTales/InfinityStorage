@@ -62,6 +62,6 @@
       "pg": "^8.11.5"
     }
   },
-  "author": "",
+  "author": "Tobias Gurtzick <magic@wizardtales.com>",
   "license": "MIT"
 }
