@@ -13,6 +13,7 @@ import DBMigrate from 'db-migrate';
 import fastifySession from '@fastify/session';
 import fastifyCookie from '@fastify/cookie';
 import spPlugin from './lib/plugins/sp.js';
+import Iron from '@hapi/iron';
 
 // const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -30,26 +31,37 @@ fastify.decorate('s3', Promise.promisifyAll(minioClient, { suffix: 'A' }));
 fastify.register(multipart);
 fastify.register(cors, config.server.cors);
 
-fastify.register(fastifyCookie);
-fastify.register(fastifySession, {
-  secret: '2b2fd0faa75e6a9f99d513911e7a5cb5802ca65b635bf587e3e784eb51e051a4', // Secret testing  purposes only!
-  cookie: {
-    secure: false
-  }
+fastify.register(fastifyCookie, {
+  secret: {
+    sign: async (value) => {
+      return Iron.seal(value, config.cookies.password, Iron.defaults);
+    },
+    unsign: async (value) => {
+      return Iron.unseal(value, config.cookies.password, Iron.defaults);
+    }
+  },
+  parseOptions: config.cookies.config
 });
+
+// fastify.register(fastifySession, {
+//   secret: '2b2fd0faa75e6a9f99d513911e7a5cb5802ca65b635bf587e3e784eb51e051a4', // Secret testing  purposes only!
+//   cookie: {
+//     secure: false
+//   }
+// });
 
 fastify.addHook('preHandler', spPlugin);
 
 fastify.addHook('onRequest', async (request, reply) => {
-  if (request.session.user) {
-    request.user = request.session.user;
-    const { pool } = request.server.pg;
-    const { msg: storage } = await storageService.getStorageById(
-      pool,
-      request.user.id
-    );
-    request.storage = storage;
-  }
+  // if (request.session.user) {
+  //   request.user = request.session.user;
+  //   const { pool } = request.server.pg;
+  //   const { msg: storage } = await storageService.getStorageById(
+  //     pool,
+  //     request.user.id
+  //   );
+  //   request.storage = storage;
+  // }
 });
 
 // Routes

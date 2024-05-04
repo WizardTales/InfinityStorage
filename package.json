@@ -18,10 +18,11 @@
     ]
   },
   "dependencies": {
-    "@fastify/cookie": "^9.3.1",
+    "@fastify/cookie": "WizardTales/fastify-cookie#async_signer",
     "@fastify/cors": "^8.2.1",
     "@fastify/multipart": "^8.0.0",
     "@fastify/session": "^10.7.0",
+    "@hapi/iron": "^7.0.1",
     "bluebird": "^3.7.2",
     "crdb-pg": "^1.4.1",
     "crypto-random-string": "^5.0.0",

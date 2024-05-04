@@ -73,6 +73,21 @@ const config = rc(prefix, {
   },
   file: {
     lockDuration: '5' // seconds
+  },
+  cookies: {
+    cookie: 'session',
+    password: {
+      id: '0',
+      secret: '22ddfe02cabd6af2204bf2b76ebd9e3d',
+      ...['22ddfe02cabd6af2204bf2b76ebd9e3d']
+    },
+    config: {
+      secure: false,
+      httpOnly: true,
+      sameSite: false,
+      ttl: 1000 * 60 * 60 * 6
+    },
+    redirectTo: '/saml/login'
   }
 });
 
