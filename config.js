@@ -69,7 +69,7 @@ const config = rc(prefix, {
   },
   sp: {
     providesAge: true,
-    domain: 'infinitystorage.wizardtales.com'
+    domain: 'wizardtales.com'
   },
   file: {
     lockDuration: '5' // seconds

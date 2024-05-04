@@ -66,8 +66,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0(rc@1.2.8)
       secure-passwords:
-        specifier: ^1.3.0
-        version: 1.3.0
+        specifier: ^1.3.2
+        version: 1.3.2
       sql-template-tag:
         specifier: ^5.2.0
         version: 5.2.0
@@ -2924,10 +2924,10 @@ packages:
         integrity: sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==
       }
 
-  secure-passwords@1.3.0:
+  secure-passwords@1.3.2:
     resolution:
       {
-        integrity: sha512-D+BPc9KlT76vrevfZgWOoOHHVvDQF5xlIXdNySdGbXrPluJVYIoVKW2aqyaZV3b+cWle+lqzq/2nBux+IwQ8/g==
+        integrity: sha512-YMzZKvPlWIx14Dc3i4R7y5XUc16zWHs9vh4LWG72ojOGSRj+UZArRs9qA0z5VKUWQkxbA4MhQIQ3QhP1tar5ZQ==
       }
 
   semver@6.3.1:
@@ -5304,7 +5304,7 @@ snapshots:
 
   secure-json-parse@2.7.0: {}
 
-  secure-passwords@1.3.0:
+  secure-passwords@1.3.2:
     dependencies:
       bluebird: 3.7.2
       moment: 2.30.1
