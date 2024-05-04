@@ -127,6 +127,24 @@ attacker gets knowledge of both, security degrades to the weakest link
 Additionally we will offer a certificate based login and encryption system with
 enforcing policies for systems that require to get even higher security standards.
 
+# Security enhancements
+
+The beforementioned passwords to the encryptionKeys are actually secured by
+asymmetric encryption. What is being decrypted by the users password, is their
+own private key. The same is true for the system portion of the encryption. The
+pepper of the system decrypts the systems private key.
+
+The way a user actually encrypts a file is by generating a unique encryption
+key phrase and splitting it in half. One half it encrypts with its own private
+key, the other half with the systems public key. The next step is that it
+transfers these to the system to store them.
+
+We can enhance the total system security by actually separating the storage of
+the keys split from the main service. We will skip this step in the beginning
+as our system already will be more secure than the other systems out there.
+However this is on the horizon to be introduced and migration of those keys
+is a rather easy process.
+
 # Versioning
 
 Versioning can be easily supported but wont be part of the first standard
