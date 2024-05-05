@@ -54,8 +54,12 @@ describe('Permission service', function () {
     };
 
     const {
+      code,
       data: { id }
     } = await createFile(pool, minioClient, dummyFile, userId, storageId);
+
+    assert.equal(code, 200);
+
     fileId = id;
   });
 
