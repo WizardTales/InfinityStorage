@@ -1,15 +1,20 @@
 import { describe, it, before, after } from 'mocha';
+import { createFile, deleteFile } from '../lib/services/file.js';
+import {
+  hasAccess,
+  grantAccess,
+  revokeAccess
+} from '../lib/services/permission.js';
+import { Client as MClient } from 'minio';
+import uuid from 'uuid-random';
+import config from '../config.js';
 import DBMigrate from 'db-migrate';
 import CRDB from 'crdb-pg';
 import SQL from 'sql-template-tag';
-import { Client as MClient } from 'minio';
+import Promise from 'bluebird';
 import fs from 'fs';
 import path from 'path';
-import config from '../config.js';
-import uuid from 'uuid-random';
-import { createFile, deleteFile, lock, unlock } from '../lib/services/file.js';
-import { assert } from 'console';
-import Promise from 'bluebird';
+import assert from 'assert';
 
 /** @type {require('pg').Pool} */
 let pool;
@@ -19,7 +24,7 @@ let fileId;
 const userId = uuid();
 const storageId = uuid();
 
-describe('file locking service', function (done) {
+describe('Permission service', function () {
   before(async function () {
     config.s3.port = Number(config.s3.port);
     if (typeof config.s3.useSSL === 'string') {
@@ -49,8 +54,12 @@ describe('file locking service', function (done) {
     };
 
     const {
+      code,
       data: { id }
     } = await createFile(pool, minioClient, dummyFile, userId, storageId);
+
+    assert.equal(code, 200);
+
     fileId = id;
   });
 
@@ -58,28 +67,39 @@ describe('file locking service', function (done) {
     await deleteFile(pool, minioClient, fileId, userId, storageId);
   });
 
-  it('should lock', async function () {
-    const { code } = await lock(pool, fileId, storageId);
-
-    assert(code, 200);
-  });
-
-  it('should restrict deleting a locked file', async function () {
-    const { code, msg } = await deleteFile(
+  it('should grant access to user', async function () {
+    const { code, permission } = await grantAccess(
       pool,
-      minioClient,
-      fileId,
       userId,
+      fileId,
       storageId
     );
 
-    assert(code, 400);
-    assert(msg, 'File is locked');
+    assert.equal(code, 200);
+    assert.equal(permission.permissions, 1);
   });
 
-  it('should unlock', async function () {
-    const { code: unlockCode } = await unlock(pool, fileId, storageId);
+  it('checks valid access', async function () {
+    const permission = await hasAccess(pool, userId, fileId, storageId);
 
-    assert(unlockCode, 200);
+    assert.ok(permission);
+  });
+
+  it('should revoke access to user', async function () {
+    const { code, permission } = await revokeAccess(
+      pool,
+      userId,
+      fileId,
+      storageId
+    );
+
+    assert.equal(code, 200);
+    assert.equal(permission.permissions, 0);
+  });
+
+  it('checks invalid access', async function () {
+    const permission = await hasAccess(pool, userId, fileId, storageId);
+
+    assert.ok(!permission);
   });
 });
