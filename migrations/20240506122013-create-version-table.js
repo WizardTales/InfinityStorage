@@ -74,7 +74,7 @@ exports.migrate = async (db, opt) => {
       }
     }
   });
-  return db.addIndex('file', 'findversion', ['fileId', 'version'], true);
+  return db.addIndex('version', 'findversion', ['fileId', 'version'], true);
 };
 
 exports._meta = {
