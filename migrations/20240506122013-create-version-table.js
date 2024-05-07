@@ -24,7 +24,8 @@ exports.migrate = async (db, opt) => {
     },
     version: {
       type: type.SMALLINT,
-      default: '0'
+      defaultValue: 0,
+      notNull: true
     },
     filename: {
       type: type.STRING,
