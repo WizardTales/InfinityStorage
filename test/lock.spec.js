@@ -59,9 +59,9 @@ describe('file locking service', function (done) {
   });
 
   it('should lock', async function () {
-    const { code } = await lock(pool, fileId, storageId);
+    const lockRes = await lock(pool, fileId, userId, storageId);
 
-    assert(code, 200);
+    assert(lockRes.code, 200);
   });
 
   it('should restrict deleting a locked file', async function () {
@@ -78,7 +78,7 @@ describe('file locking service', function (done) {
   });
 
   it('should unlock', async function () {
-    const { code: unlockCode } = await unlock(pool, fileId, storageId);
+    const { code: unlockCode } = await unlock(pool, fileId, userId, storageId);
 
     assert(unlockCode, 200);
   });
