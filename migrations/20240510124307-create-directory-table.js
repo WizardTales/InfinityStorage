@@ -15,7 +15,7 @@ exports.migrate = async (db, opt) => {
     },
     parentId: {
       type: 'uuid',
-      notNull: true,
+      notNull: false,
       foreignKey: {
         name: 'dir_parent_fk',
         table: 'directory',
@@ -41,6 +41,8 @@ exports.migrate = async (db, opt) => {
       }
     }
   });
+
+  await db.addIndex('directory', 'findDirectory', ['name', 'parentId'], true);
 };
 
 exports._meta = {
