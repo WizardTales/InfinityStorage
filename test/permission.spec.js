@@ -47,20 +47,23 @@ describe('Permission service', function () {
     const file = fs.createReadStream(filePath, { encoding: 'utf-8' });
 
     const dummyFile = {
-      filename: 'dummyfile.txt',
+      filename: 'dummyfile1.txt',
       mimetype: 'plain/text',
       fields: { fileParent: { value: 'testing' } },
       file
     };
 
-    const {
-      code,
-      data: { id }
-    } = await createFile(pool, minioClient, dummyFile, userId, storageId);
+    const { code, data, msg } = await createFile(
+      pool,
+      minioClient,
+      dummyFile,
+      userId,
+      storageId
+    );
 
-    assert.equal(code, 200);
+    assert.equal(code, 200, msg);
 
-    fileId = id;
+    fileId = data.id;
   });
 
   after(async function () {

@@ -8,7 +8,7 @@ import path from 'path';
 import config from '../config.js';
 import uuid from 'uuid-random';
 import { createFile, deleteFile, lock, unlock } from '../lib/services/file.js';
-import { assert } from 'console';
+import assert from 'assert';
 import Promise from 'bluebird';
 
 /** @type {require('pg').Pool} */
@@ -42,16 +42,23 @@ describe('file locking service', function (done) {
     const file = fs.createReadStream(filePath, { encoding: 'utf-8' });
 
     const dummyFile = {
-      filename: 'dummyfile.txt',
+      filename: 'dummyfile2.txt',
       mimetype: 'plain/text',
       fields: { fileParent: { value: 'testing' } },
       file
     };
 
-    const {
-      data: { id }
-    } = await createFile(pool, minioClient, dummyFile, userId, storageId);
-    fileId = id;
+    const { code, data, msg } = await createFile(
+      pool,
+      minioClient,
+      dummyFile,
+      userId,
+      storageId
+    );
+
+    assert.equal(code, 200, msg);
+
+    fileId = data.id;
   });
 
   after(async function () {
@@ -61,7 +68,7 @@ describe('file locking service', function (done) {
   it('should lock', async function () {
     const lockRes = await lock(pool, fileId, userId, storageId);
 
-    assert(lockRes.code, 200);
+    assert.equal(lockRes.code, 200);
   });
 
   it('should restrict deleting a locked file', async function () {
@@ -73,13 +80,13 @@ describe('file locking service', function (done) {
       storageId
     );
 
-    assert(code, 400);
-    assert(msg, 'File is locked');
+    assert.equal(code, 400);
+    assert.equal(msg, 'File is locked');
   });
 
   it('should unlock', async function () {
     const { code: unlockCode } = await unlock(pool, fileId, userId, storageId);
 
-    assert(unlockCode, 200);
+    assert.equal(unlockCode, 200);
   });
 });

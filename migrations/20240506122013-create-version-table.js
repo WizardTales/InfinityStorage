@@ -52,10 +52,6 @@ exports.migrate = async (db, opt) => {
       notNull: true,
       defaultValue: '{}'
     },
-    path: {
-      type: type.STRING,
-      notNull: true
-    },
     extFilename: {
       type: 'uuid',
       unique: false
