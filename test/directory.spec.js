@@ -90,14 +90,26 @@ describe('Directory service', function (done) {
     });
 
     it('should move folder from one parent to another', async function () {
-      const [testDir, parent2] = await Promise.all([
-        dir.createPath(pool, '/testroot/parent1/testDir'),
-        dir.createPath(pool, '/testroot/parent2')
-      ]);
+      const testDir = await dir.createPath(pool, '/testroot/parent1/testDir');
+      const parent2 = await dir.createPath(pool, '/testroot/parent2');
 
-      const newTestDir = await dir.move(pool, testDir.id, parent2.id);
+      const testDir2 = await dir.move(pool, testDir.id, parent2.id);
 
-      assert.equal(newTestDir.parentId, parent2.id);
+      assert.equal(testDir2.parentId, parent2.id);
+    });
+
+    it('should get dir by path', async function () {
+      const dir1 = await dir.createPath(pool, '/testroot/parent3/testDir');
+      const dir2 = await dir.getDirByPath(pool, '/testroot/parent3/testDir');
+      assert.equal(dir1.id, dir2.id);
+    });
+
+    it('should check if a path exists', async function () {
+      assert.ok(await dir.existsPath(pool, '/testroot/parent2/testDir'));
+    });
+
+    it('should check if a path does not exists', async function () {
+      assert.ok(!(await dir.existsPath(pool, '/testroot/parent1/testDir')));
     });
   });
 });
