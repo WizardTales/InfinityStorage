@@ -1,42 +1,25 @@
 import { describe, it, before, after } from 'mocha';
-import DBMigrate from 'db-migrate';
-import CRDB from 'crdb-pg';
 import SQL from 'sql-template-tag';
-import { Client as MClient } from 'minio';
 import fs from 'fs';
 import path from 'path';
-import config from '../config.js';
-import uuid from 'uuid-random';
 import { createFile, deleteFile, lock, unlock } from '../lib/services/file.js';
 import assert from 'assert';
-import Promise from 'bluebird';
 
 /** @type {require('pg').Pool} */
 let pool;
 /** @type {MClient} */
 let minioClient;
 let fileId;
-const userId = uuid();
-const storageId = uuid();
+let userId;
+let storageId;
 
 describe('file locking service', function (done) {
   before(async function () {
-    config.s3.port = Number(config.s3.port);
-    if (typeof config.s3.useSSL === 'string') {
-      config.s3.useSSL = config.s3.useSSL === 'true';
-    }
-
-    minioClient = new MClient(config.s3);
-    minioClient = Promise.promisifyAll(minioClient, { suffix: 'A' });
-
-    const dbm = DBMigrate.getInstance(true);
-    const { settings } = dbm.config.getCurrent();
-
-    const crdb = new CRDB(settings);
-    pool = crdb.pool();
-
-    await pool.query(SQL`INSERT INTO "storage" ("id", "ownerId", "data")
-    VALUES (${storageId}, ${userId}, '{}')`);
+    pool = global.pool;
+    minioClient = global.mClient;
+    fileId = global.fileId;
+    userId = global.userId;
+    storageId = global.storageId;
 
     const filePath = path.join(process.cwd(), 'test/dummyfile.txt');
     const file = fs.createReadStream(filePath, { encoding: 'utf-8' });
