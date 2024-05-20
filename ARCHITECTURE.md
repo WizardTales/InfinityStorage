@@ -122,7 +122,9 @@ encrypted with the systems pepper. Additionally the db should enable encryption
 at rest. This way when a database got leaked, but not the configuration of the
 running service was leaked, all the encryption secrets remain safe. If an
 attacker gets knowledge of both, security degrades to the weakest link
-(user password).
+(user password). Additionally we store a second layer encryption inside the
+file based encrypted password part. This way the users password becomes mostly
+irrelevant to security.
 
 Additionally we will offer a certificate based login and encryption system with
 enforcing policies for systems that require to get even higher security standards.
