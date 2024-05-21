@@ -26,6 +26,10 @@ exports.migrate = async (db, opt) => {
         mapping: 'id'
       }
     },
+    path: {
+      type: type.STRING,
+      notNull: true
+    },
     createdAt: {
       type: 'timestamptz',
       notNull: true,
@@ -43,6 +47,7 @@ exports.migrate = async (db, opt) => {
   });
 
   await db.addIndex('directory', 'findDirectory', ['name', 'parentId'], true);
+  await db.addIndex('directory', 'findPath', 'path', true);
 };
 
 exports._meta = {
