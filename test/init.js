@@ -50,8 +50,11 @@ before(async function () {
 });
 
 after(async function () {
-  const q = SQL`DELETE FROM "user" WHERE "id" = ${global.userId}`;
-
-  await global.pool.query(q);
+  await global.pool.query(
+    SQL`DELETE FROM "user" WHERE "id" = ${global.userId}`
+  );
+  await global.pool.query(
+    SQL`DELETE FROM "directory" WHERE path = ${'/global/' + global.username}`
+  );
   console.log('Testing complete');
 });

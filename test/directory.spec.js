@@ -9,7 +9,7 @@ let pool;
 let parentId, childId;
 const parentName = 'testDir';
 
-describe('Directory service', function (done) {
+describe('Directory service', function () {
   before(async function () {
     const dbm = DBMigrate.getInstance(true);
     const { settings } = dbm.config.getCurrent();
