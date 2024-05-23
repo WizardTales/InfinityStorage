@@ -44,9 +44,6 @@ fastify.addHook('preHandler', spPlugin);
 // Routes
 fastify.register(routes);
 
-// Declare a route
-fastify.get('/api/d1', upload.d1);
-
 // Run the server!
 const start = async () => {
   try {
