@@ -5,13 +5,6 @@ import {
   grantAccess,
   revokeAccess
 } from '../lib/services/permission.js';
-import { Client as MClient } from 'minio';
-import uuid from 'uuid-random';
-import config from '../config.js';
-import DBMigrate from 'db-migrate';
-import CRDB from 'crdb-pg';
-import SQL from 'sql-template-tag';
-import Promise from 'bluebird';
 import fs from 'fs';
 import path from 'path';
 import assert from 'assert';
@@ -21,46 +14,36 @@ let pool;
 /** @type {MClient} */
 let minioClient;
 let fileId;
-const userId = uuid();
-const storageId = uuid();
+let userId;
+let storageId;
 
 describe('Permission service', function () {
   before(async function () {
-    config.s3.port = Number(config.s3.port);
-    if (typeof config.s3.useSSL === 'string') {
-      config.s3.useSSL = config.s3.useSSL === 'true';
-    }
-
-    minioClient = new MClient(config.s3);
-    minioClient = Promise.promisifyAll(minioClient, { suffix: 'A' });
-
-    const dbm = DBMigrate.getInstance(true);
-    const { settings } = dbm.config.getCurrent();
-
-    const crdb = new CRDB(settings);
-    pool = crdb.pool();
-
-    await pool.query(SQL`INSERT INTO "storage" ("id", "ownerId", "data")
-    VALUES (${storageId}, ${userId}, '{}')`);
-
+    userId = global.userId;
+    storageId = global.storageId;
+    pool = global.pool;
+    minioClient = global.mClient;
     const filePath = path.join(process.cwd(), 'test/dummyfile.txt');
     const file = fs.createReadStream(filePath, { encoding: 'utf-8' });
 
     const dummyFile = {
-      filename: 'dummyfile.txt',
+      filename: 'dummyfile1.txt',
       mimetype: 'plain/text',
       fields: { fileParent: { value: 'testing' } },
       file
     };
 
-    const {
-      code,
-      data: { id }
-    } = await createFile(pool, minioClient, dummyFile, userId, storageId);
+    const { code, data, msg } = await createFile(
+      pool,
+      minioClient,
+      dummyFile,
+      userId,
+      storageId
+    );
 
-    assert.equal(code, 200);
+    assert.equal(code, 200, msg);
 
-    fileId = id;
+    fileId = data.id;
   });
 
   after(async function () {

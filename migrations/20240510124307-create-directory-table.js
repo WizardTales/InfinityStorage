@@ -2,19 +2,23 @@
 
 exports.migrate = async (db, opt) => {
   const type = opt.dbm.dataType;
-  await db.createTable('version', {
+  await db.createTable('directory', {
     id: {
       type: 'uuid',
       primaryKey: true,
       autoIncrement: true,
       notNull: true
     },
-    fileId: {
+    name: {
+      type: type.STRING,
+      notNull: true
+    },
+    parentId: {
       type: 'uuid',
-      notNull: true,
+      notNull: false,
       foreignKey: {
-        name: 'file_version_fk',
-        table: 'file',
+        name: 'dir_parent_fk',
+        table: 'directory',
         rules: {
           onDelete: 'CASCADE',
           onUpdate: 'CASCADE'
@@ -22,39 +26,9 @@ exports.migrate = async (db, opt) => {
         mapping: 'id'
       }
     },
-    version: {
-      type: type.SMALLINT,
-      defaultValue: 0,
-      notNull: true
-    },
-    filename: {
+    path: {
       type: type.STRING,
       notNull: true
-    },
-    size: {
-      type: type.BIGINT,
-      notNull: true,
-      defaultValue: 0
-    },
-    mime: {
-      type: 'JSONB',
-      notNull: true
-    },
-    encryptionKey: {
-      type: type.STRING
-    },
-    state: {
-      type: type.SMALLINT,
-      defaultValue: 1
-    },
-    data: {
-      type: 'JSONB',
-      notNull: true,
-      defaultValue: '{}'
-    },
-    extFilename: {
-      type: 'uuid',
-      unique: false
     },
     createdAt: {
       type: 'timestamptz',
@@ -71,7 +45,9 @@ exports.migrate = async (db, opt) => {
       }
     }
   });
-  return db.addIndex('version', 'findversion', ['fileId', 'version'], true);
+
+  await db.addIndex('directory', 'findDirectory', ['name', 'parentId'], true);
+  await db.addIndex('directory', 'findPath', 'path', true);
 };
 
 exports._meta = {
