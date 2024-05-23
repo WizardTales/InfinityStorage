@@ -108,18 +108,15 @@ importers:
       nodemon:
         specifier: ^3.1.0
         version: 3.1.0
+      pino-pretty:
+        specifier: ^11.0.0
+        version: 11.0.0
       prettier:
         specifier: ^2.8.1
         version: 2.8.8
       pretty-quick:
         specifier: ^3.1.3
         version: 3.3.1(prettier@2.8.8)
-      sinon:
-        specifier: ^6.3.5
-        version: 6.3.5
-      sinon-stub-promise:
-        specifier: ^4.0.0
-        version: 4.0.0
 
 packages:
   '@aashutoshrathi/word-wrap@1.2.6':
@@ -299,36 +296,6 @@ packages:
       }
     engines: { node: '>= 8' }
 
-  '@sinonjs/commons@1.8.6':
-    resolution:
-      {
-        integrity: sha512-Ky+XkAkqPZSm3NLBeUng77EBQl3cmeJhITaGHdYH8kjVB+aun3S4XBRti2zt17mtt0mIUDiNxYeoJm6drVvBJQ==
-      }
-
-  '@sinonjs/formatio@3.2.2':
-    resolution:
-      {
-        integrity: sha512-B8SEsgd8gArBLMD6zpRw3juQ2FVSsmdd7qlevyDqzS9WTCtvF55/gAL+h6gue8ZvPYcdiPdvueM/qm//9XzyTQ==
-      }
-
-  '@sinonjs/samsam@2.1.3':
-    resolution:
-      {
-        integrity: sha512-8zNeBkSKhU9a5cRNbpCKau2WWPfan+Q2zDlcXvXyhn9EsMqgYs4qzo0XHNVlXC6ABQL8fT6nV+zzo5RTHJzyXw==
-      }
-
-  '@sinonjs/samsam@3.3.3':
-    resolution:
-      {
-        integrity: sha512-bKCMKZvWIjYD0BLGnNrxVuw4dkWCYsLqFOUWw8VgKF/+5Y+mE7LfHWPIYoDXowH+3a9LsWDMo0uAP8YDosPvHQ==
-      }
-
-  '@sinonjs/text-encoding@0.7.2':
-    resolution:
-      {
-        integrity: sha512-sXXKG+uL9IrKqViTtao2Ws6dy0znu9sOaP1di/jKGW1M6VssO8vlpXCQcpZ+jisQ1tTFAC5Jo/EOzFbggBagFQ==
-      }
-
   '@tokenizer/token@0.3.0':
     resolution:
       {
@@ -489,12 +456,6 @@ packages:
         integrity: sha512-ahC5W1xgou+KTXix4sAO8Ki12Q+jf4i0+tmk3sC+zgcynshkHxzpXdImBehiUYKKKDwvfFiJl1tZt6ewscS1Mg==
       }
     engines: { node: '>= 0.4' }
-
-  array-from@2.1.1:
-    resolution:
-      {
-        integrity: sha512-GQTc6Uupx1FCavi5mPzBvVT7nEOeWMmUA9P95wpfpW1XwMSKs+KaymD5C2Up7KAUKg/mYwbsUYzdZWcoajlNZg==
-      }
 
   array-includes@3.1.8:
     resolution:
@@ -834,6 +795,12 @@ packages:
       }
     engines: { node: '>= 0.4' }
 
+  dateformat@4.6.3:
+    resolution:
+      {
+        integrity: sha512-2P0p0pFGzHS5EMnhdxQi7aJN+iMheud0UhG4dlE1DLAlvL8JHjJJTX/CSm4JXwV0Ka5nGk3zC5mcb5bUQUxxMA==
+      }
+
   dayjs@1.11.10:
     resolution:
       {
@@ -946,13 +913,6 @@ packages:
         integrity: sha512-8QmQKqEASLd5nx0U1B1okLElbUuuttJ/AnYmRXbbbGDWh6uS208EjD4Xqq/I9wK7u0v6O08XhTWnt5XtEbR6Dg==
       }
     engines: { node: '>= 0.4' }
-
-  diff@3.5.0:
-    resolution:
-      {
-        integrity: sha512-A46qtFgd+g7pDZinpnwiRJtxbC1hpgf0uzP3iG89scHk0AUC7A1TGxf5OiiOUv/JMZR8GOt8hL900hV0bOy5xA==
-      }
-    engines: { node: '>=0.3.1' }
 
   diff@5.0.0:
     resolution:
@@ -1274,6 +1234,12 @@ packages:
         integrity: sha512-fBHHqSTFLVnR61C+gltJuE5GkVQMV0S2nqUO8TJ+5Z3qAKG8vAx4FKai1s5jq/inV1+sREynIWSuQ6HgoSXpDQ==
       }
 
+  fast-copy@3.0.2:
+    resolution:
+      {
+        integrity: sha512-dl0O9Vhju8IrcLndv2eU4ldt1ftXMqqfgN4H1cpmGV7P6jeB9FwpN9a2c8DPGE1Ys88rNUJVYDHq73CGAGOPfQ==
+      }
+
   fast-decode-uri-component@1.0.1:
     resolution:
       {
@@ -1316,6 +1282,12 @@ packages:
         integrity: sha512-dwsoQlS7h9hMeYUq1W++23NDcBLV4KqONnITDV9DjfS3q1SgDGVrBdvvTLUotWtPSD7asWDV9/CmsZPy8Hf70A==
       }
     engines: { node: '>=6' }
+
+  fast-safe-stringify@2.1.1:
+    resolution:
+      {
+        integrity: sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==
+      }
 
   fast-uri@2.3.0:
     resolution:
@@ -1623,6 +1595,12 @@ packages:
         integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
       }
     hasBin: true
+
+  help-me@5.0.0:
+    resolution:
+      {
+        integrity: sha512-7xgomUX6ADmcYzFik0HzAxh/73YlKR9bmFzf51CZwR+b6YtzU2m0u49hQCqV6SvlqIqsaxovfwdvbnsw3b/zpg==
+      }
 
   human-signals@1.1.1:
     resolution:
@@ -1936,6 +1914,13 @@ packages:
         integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
       }
 
+  joycon@3.1.1:
+    resolution:
+      {
+        integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==
+      }
+    engines: { node: '>=10' }
+
   js-yaml@4.1.0:
     resolution:
       {
@@ -1985,12 +1970,6 @@ packages:
         integrity: sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==
       }
     hasBin: true
-
-  just-extend@4.2.1:
-    resolution:
-      {
-        integrity: sha512-g3UB796vUFIY90VIv/WX3L2c8CS2MdWUww3CNrYmqza1Fg0DURc2K/O4YrnklBdQarSJ/y8JnJYDGc+1iumQjg==
-      }
 
   keyv@4.5.4:
     resolution:
@@ -2064,12 +2043,6 @@ packages:
         integrity: sha512-qjxPLHd3r5DnsdGacqOMU6pb/avJzdh9tFX2ymgoZE27BmjXrNy/y4LoaiTeAb+O3gL8AfpJGtqfX/ae2leYYQ==
       }
 
-  lodash.get@4.4.2:
-    resolution:
-      {
-        integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==
-      }
-
   lodash.merge@4.6.2:
     resolution:
       {
@@ -2095,18 +2068,6 @@ packages:
         integrity: sha512-5UtUDQ/6edw4ofyljDNcOVJQ4c7OjDro4h3y8e1GQL5iYElYclVHJ3zeWchylvMaKnDbDilC8irOVyexnA/Slw==
       }
     engines: { node: ^12.20.0 || ^14.13.1 || >=16.0.0 }
-
-  lolex@2.7.5:
-    resolution:
-      {
-        integrity: sha512-l9x0+1offnKKIzYVjyXU2SiwhXDLekRzKyhnbyldPHvC7BvLPVpdNUNR2KeMAiCN2D/kLNttZgQD5WjSxuBx3Q==
-      }
-
-  lolex@5.1.2:
-    resolution:
-      {
-        integrity: sha512-h4hmjAvHTmd+25JSwrtTIuwbKdwg5NzZVRMLn9saij4SZaepCrTCxPr35H/3bjwfMJtN+t3CX8672UIkglz28A==
-      }
 
   lru-cache@6.0.0:
     resolution:
@@ -2258,12 +2219,6 @@ packages:
     resolution:
       {
         integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
-      }
-
-  nise@1.5.3:
-    resolution:
-      {
-        integrity: sha512-Ymbac/94xeIrMf59REBPOv0thr+CJVFMhrlAkW/gjCIE58BGQdCj0x7KRCb3yz+Ga2Rz3E9XXSvUyyxqqhjQAQ==
       }
 
   node-fs@0.1.7:
@@ -2474,12 +2429,6 @@ packages:
         integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
       }
 
-  path-to-regexp@1.8.0:
-    resolution:
-      {
-        integrity: sha512-n43JRhlUKUAlibEJhPeir1ncUID16QnEjNpwzNdO3Lm4ywrBpBZ5oLD0I6br9evr1Y9JTqwRtAh7JLoOzAQdVA==
-      }
-
   peek-readable@5.0.0:
     resolution:
       {
@@ -2590,6 +2539,19 @@ packages:
       {
         integrity: sha512-lsleG3/2a/JIWUtf9Q5gUNErBqwIu1tUKTT3dUzaf5DySw9ra1wcqKjJjLX1VTY64Wk1eEOYsVGSaGfCK85ekA==
       }
+
+  pino-abstract-transport@1.2.0:
+    resolution:
+      {
+        integrity: sha512-Guhh8EZfPCfH+PMXAb6rKOjGQEoy0xlAIn+irODG5kgfYV+BQ0rGYYWTIel3P5mmyXqkYkPmdIkywsn6QKUR1Q==
+      }
+
+  pino-pretty@11.0.0:
+    resolution:
+      {
+        integrity: sha512-YFJZqw59mHIY72wBnBs7XhLGG6qpJMa4pEQTRgEPEbjIYbng2LXEZZF1DoyDg9CfejEy8uZCyzpcBXXG0oOCwQ==
+      }
+    hasBin: true
 
   pino-std-serializers@6.2.2:
     resolution:
@@ -3005,20 +2967,6 @@ packages:
       }
     engines: { node: '>=10' }
 
-  sinon-stub-promise@4.0.0:
-    resolution:
-      {
-        integrity: sha512-89eBnPV781EXt0q90ystausgLjLwEFQStmh0Cp1xU98DovklkYYMmHk+h6gB+sjnb3BlDJ1RiV4ZKuXgcEZUjA==
-      }
-    engines: { node: '>= 0.10' }
-
-  sinon@6.3.5:
-    resolution:
-      {
-        integrity: sha512-xgoZ2gKjyVRcF08RrIQc+srnSyY1JDJtxu3Nsz07j1ffjgXoY6uPLf/qja6nDBZgzYYEovVkFryw2+KiZz11xQ==
-      }
-    deprecated: 16.1.1
-
   slice-ansi@5.0.0:
     resolution:
       {
@@ -3300,13 +3248,6 @@ packages:
         integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==
       }
     engines: { node: '>= 0.8.0' }
-
-  type-detect@4.0.8:
-    resolution:
-      {
-        integrity: sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==
-      }
-    engines: { node: '>=4' }
 
   type-fest@0.20.2:
     resolution:
@@ -3659,25 +3600,6 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
 
-  '@sinonjs/commons@1.8.6':
-    dependencies:
-      type-detect: 4.0.8
-
-  '@sinonjs/formatio@3.2.2':
-    dependencies:
-      '@sinonjs/commons': 1.8.6
-      '@sinonjs/samsam': 3.3.3
-
-  '@sinonjs/samsam@2.1.3': {}
-
-  '@sinonjs/samsam@3.3.3':
-    dependencies:
-      '@sinonjs/commons': 1.8.6
-      array-from: 2.1.1
-      lodash: 4.17.21
-
-  '@sinonjs/text-encoding@0.7.2': {}
-
   '@tokenizer/token@0.3.0': {}
 
   '@types/json5@0.0.29': {}
@@ -3752,8 +3674,6 @@ snapshots:
     dependencies:
       call-bind: 1.0.7
       is-array-buffer: 3.0.4
-
-  array-from@2.1.1: {}
 
   array-includes@3.1.8:
     dependencies:
@@ -3988,6 +3908,8 @@ snapshots:
       es-errors: 1.3.0
       is-data-view: 1.0.1
 
+  dateformat@4.6.3: {}
+
   dayjs@1.11.10: {}
 
   db-migrate-base@2.3.1:
@@ -4073,8 +3995,6 @@ snapshots:
       define-data-property: 1.1.4
       has-property-descriptors: 1.0.2
       object-keys: 1.1.1
-
-  diff@3.5.0: {}
 
   diff@5.0.0: {}
 
@@ -4364,6 +4284,8 @@ snapshots:
 
   fast-content-type-parse@1.1.0: {}
 
+  fast-copy@3.0.2: {}
+
   fast-decode-uri-component@1.0.1: {}
 
   fast-deep-equal@3.1.3: {}
@@ -4387,6 +4309,8 @@ snapshots:
       fast-decode-uri-component: 1.0.1
 
   fast-redact@3.5.0: {}
+
+  fast-safe-stringify@2.1.1: {}
 
   fast-uri@2.3.0: {}
 
@@ -4577,6 +4501,8 @@ snapshots:
 
   he@1.2.0: {}
 
+  help-me@5.0.0: {}
+
   human-signals@1.1.1: {}
 
   human-signals@4.3.1: {}
@@ -4717,6 +4643,8 @@ snapshots:
 
   isexe@2.0.0: {}
 
+  joycon@3.1.1: {}
+
   js-yaml@4.1.0:
     dependencies:
       argparse: 2.0.1
@@ -4738,8 +4666,6 @@ snapshots:
   json5@1.0.2:
     dependencies:
       minimist: 1.2.8
-
-  just-extend@4.2.1: {}
 
   keyv@4.5.4:
     dependencies:
@@ -4798,8 +4724,6 @@ snapshots:
 
   lodash.defaults@4.2.0: {}
 
-  lodash.get@4.4.2: {}
-
   lodash.merge@4.6.2: {}
 
   lodash@4.17.21: {}
@@ -4816,12 +4740,6 @@ snapshots:
       slice-ansi: 5.0.0
       strip-ansi: 7.1.0
       wrap-ansi: 8.1.0
-
-  lolex@2.7.5: {}
-
-  lolex@5.1.2:
-    dependencies:
-      '@sinonjs/commons': 1.8.6
 
   lru-cache@6.0.0:
     dependencies:
@@ -4919,14 +4837,6 @@ snapshots:
   nanolru@1.0.0: {}
 
   natural-compare@1.4.0: {}
-
-  nise@1.5.3:
-    dependencies:
-      '@sinonjs/formatio': 3.2.2
-      '@sinonjs/text-encoding': 0.7.2
-      just-extend: 4.2.1
-      lolex: 5.1.2
-      path-to-regexp: 1.8.0
 
   node-fs@0.1.7: {}
 
@@ -5048,10 +4958,6 @@ snapshots:
 
   path-parse@1.0.7: {}
 
-  path-to-regexp@1.8.0:
-    dependencies:
-      isarray: 0.0.1
-
   peek-readable@5.0.0: {}
 
   pg-cloudflare@1.1.1:
@@ -5116,6 +5022,28 @@ snapshots:
     dependencies:
       readable-stream: 4.5.2
       split2: 4.2.0
+
+  pino-abstract-transport@1.2.0:
+    dependencies:
+      readable-stream: 4.5.2
+      split2: 4.2.0
+
+  pino-pretty@11.0.0:
+    dependencies:
+      colorette: 2.0.20
+      dateformat: 4.6.3
+      fast-copy: 3.0.2
+      fast-safe-stringify: 2.1.1
+      help-me: 5.0.0
+      joycon: 3.1.1
+      minimist: 1.2.8
+      on-exit-leak-free: 2.1.2
+      pino-abstract-transport: 1.2.0
+      pump: 3.0.0
+      readable-stream: 4.5.2
+      secure-json-parse: 2.7.0
+      sonic-boom: 3.8.1
+      strip-json-comments: 3.1.1
 
   pino-std-serializers@6.2.2: {}
 
@@ -5356,20 +5284,6 @@ snapshots:
     dependencies:
       semver: 7.6.0
 
-  sinon-stub-promise@4.0.0: {}
-
-  sinon@6.3.5:
-    dependencies:
-      '@sinonjs/commons': 1.8.6
-      '@sinonjs/formatio': 3.2.2
-      '@sinonjs/samsam': 2.1.3
-      diff: 3.5.0
-      lodash.get: 4.4.2
-      lolex: 2.7.5
-      nise: 1.5.3
-      supports-color: 5.5.0
-      type-detect: 4.0.8
-
   slice-ansi@5.0.0:
     dependencies:
       ansi-styles: 6.2.1
@@ -5524,8 +5438,6 @@ snapshots:
   type-check@0.4.0:
     dependencies:
       prelude-ls: 1.2.1
-
-  type-detect@4.0.8: {}
 
   type-fest@0.20.2: {}
 

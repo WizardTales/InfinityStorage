@@ -2,7 +2,7 @@
 import Fastify from 'fastify';
 import { Client as MClient } from 'minio';
 import multipart from '@fastify/multipart';
-import upload from './lib/controllers/upload.js';
+import loggerOptions from './lib/plugins/loggerOptions.js';
 import routes from './lib/routes/index.js';
 import Promise from 'bluebird';
 import cors from '@fastify/cors';
@@ -19,7 +19,7 @@ if (typeof config.s3.useSSL === 'string') {
 }
 const minioClient = new MClient(config.s3);
 
-const fastify = Fastify({ logger: true });
+const fastify = Fastify({ logger: loggerOptions[config.env] ?? true });
 
 const dbm = DBMigrate.getInstance(true);
 
@@ -56,7 +56,7 @@ const start = async () => {
 
     await fastify.listen(config.server.listen);
   } catch (err) {
-    fastify.log.error(err);
+    fastify.log.error(err.message);
     process.exit(1);
   }
 };
