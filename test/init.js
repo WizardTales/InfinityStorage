@@ -7,6 +7,7 @@ import CRDB from 'crdb-pg';
 import assert from 'assert';
 import uuid from 'uuid-random';
 import Promise from 'bluebird';
+import { createPath } from '../lib/services/directory.js';
 
 /** @type {require('pg').Pool} */
 global.pool = null;
@@ -32,8 +33,10 @@ before(async function () {
   const crdb = new CRDB(settings);
   global.pool = crdb.pool();
 
-  const q = SQL`INSERT INTO "user" ("username", "hash", "salt")
-    VALUES (${global.username}, 'dtawt3w', 'asdasdas')
+  const directory = await createPath(global.pool, `/global/${global.username}`);
+
+  const q = SQL`INSERT INTO "user" ("username", "hash", "salt", "globalDirId")
+    VALUES (${global.username}, 'dtawt3w', 'asdasdas', ${directory.id})
     RETURNING id`;
 
   const {
