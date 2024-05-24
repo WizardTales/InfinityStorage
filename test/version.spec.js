@@ -43,7 +43,14 @@ describe('Version', function () {
     const {
       code,
       data: { id }
-    } = await createFile(pool, minioClient, dummyFile, userId, storageId);
+    } = await createFile(
+      global.log,
+      pool,
+      minioClient,
+      dummyFile,
+      userId,
+      storageId
+    );
 
     assert.equal(code, 200);
 
@@ -66,6 +73,7 @@ describe('Version', function () {
 
   it('should update a file', async function () {
     const updatedFile = await updateFile(
+      global.log,
       pool,
       minioClient,
       fileId,
