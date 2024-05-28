@@ -14,6 +14,7 @@ exports.migrate = async (db, opt) => {
       mapping: 'id'
     }
   });
+  await db.addIndex('user', 'findUserDir', 'globalDirId', true);
 };
 
 exports._meta = {
