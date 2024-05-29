@@ -32,6 +32,7 @@ describe('Access service', function () {
     };
 
     const { code, data, msg } = await createFile(
+      global.log,
       global.pool,
       global.mClient,
       dummyFile,

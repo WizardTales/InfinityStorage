@@ -32,6 +32,7 @@ describe('file locking service', function (done) {
     };
 
     const { code, data, msg } = await createFile(
+      global.log,
       pool,
       minioClient,
       dummyFile,

@@ -8,6 +8,10 @@ import assert from 'assert';
 import uuid from 'uuid-random';
 import Promise from 'bluebird';
 import { createPath } from '../lib/services/directory.js';
+import Fastify from 'fastify';
+import loggerOptions from '../lib/plugins/loggerOptions.js';
+
+global.log = Fastify({ logger: loggerOptions.test }).log;
 
 /** @type {require('pg').Pool} */
 global.pool = null;
