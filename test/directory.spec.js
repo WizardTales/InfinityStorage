@@ -70,7 +70,10 @@ describe('Directory service', function () {
     });
 
     it('should split a path and create dirs', async function () {
-      const directory = await dir.createPath(pool, '/testDir/child/last');
+      const directory = await dir.createPath(
+        pool,
+        `/global/${global.username}/testDir/child/last`
+      );
 
       assert.equal(directory.name, 'last');
     });
@@ -90,8 +93,14 @@ describe('Directory service', function () {
     });
 
     it('should move folder from one parent to another', async function () {
-      const testDir = await dir.createPath(pool, '/testroot/parent1/testDir');
-      const parent2 = await dir.createPath(pool, '/testroot/parent2');
+      const testDir = await dir.createPath(
+        pool,
+        `/global/${global.username}/testroot/parent1/testDir`
+      );
+      const parent2 = await dir.createPath(
+        pool,
+        `/global/${global.username}/testroot/parent2`
+      );
 
       const testDir2 = await dir.move(pool, testDir.id, parent2.id);
 
@@ -99,17 +108,33 @@ describe('Directory service', function () {
     });
 
     it('should get dir by path', async function () {
-      const dir1 = await dir.createPath(pool, '/testroot/parent3/testDir');
-      const dir2 = await dir.getDirByPath(pool, '/testroot/parent3/testDir');
+      const dir1 = await dir.createPath(
+        pool,
+        `/global/${global.username}/testroot/parent3/testDir`
+      );
+      const dir2 = await dir.getDirByPath(
+        pool,
+        `/global/${global.username}/testroot/parent3/testDir`
+      );
       assert.equal(dir1.id, dir2.id);
     });
 
     it('should check if a path exists', async function () {
-      assert.ok(await dir.existsPath(pool, '/testroot/parent2/testDir'));
+      assert.ok(
+        await dir.existsPath(
+          pool,
+          `/global/${global.username}/testroot/parent2/testDir`
+        )
+      );
     });
 
     it('should check if a path does not exists', async function () {
-      assert.ok(!(await dir.existsPath(pool, '/testroot/parent1/testDir')));
+      assert.ok(
+        !(await dir.existsPath(
+          pool,
+          `/global/${global.username}/testroot/parent1/testDir`
+        ))
+      );
     });
   });
 });
