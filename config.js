@@ -89,6 +89,15 @@ const config = rc(prefix, {
       ttl: 1000 * 60 * 60 * 6
     },
     redirectTo: '/saml/login'
+  },
+  crypto: {
+    peppers: [
+      'FCxkTTpvFLyXjt6R5wu1Wml9zWPKgB1F',
+      'VBGlewwzhLw2rjPGzJParU7a9RlYSywm',
+      'rIFynG6dYh1MwMT4xcUPP72QJaoFbP7Q',
+      'd4cMVXUwxNCdXBIPZQeLvGyNRWaEuCEQ',
+      'ptuuTIawuygBvyYbu351N5w2CoCtkmV8'
+    ]
   }
 });
 
