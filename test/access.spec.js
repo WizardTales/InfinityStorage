@@ -11,6 +11,7 @@ let fileId;
 const user2Id = uuid();
 const username2 = 'otheruser';
 let minioClient;
+const filename = 'dummyfile-access.txt';
 
 describe('Access service', function () {
   before(async function () {
@@ -25,7 +26,7 @@ describe('Access service', function () {
     const file = fs.createReadStream(filePath, { encoding: 'utf-8' });
 
     const dummyFile = {
-      filename: 'dummyfile.txt',
+      filename,
       mimetype: 'plain/text',
       fields: { fileParent: { value: 'testing' } },
       file
