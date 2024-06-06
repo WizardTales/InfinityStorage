@@ -31,8 +31,7 @@ describe('Access service', function () {
       file
     };
 
-    const { code, data, msg } = await createFile(
-      global.log,
+    const newFile = await createFile(
       global.pool,
       global.mClient,
       dummyFile,
@@ -40,9 +39,9 @@ describe('Access service', function () {
       global.storageId
     );
 
-    assert.equal(code, 200, msg);
+    assert.ok(newFile);
 
-    fileId = data.id;
+    fileId = newFile.id;
   });
 
   after(async function () {
