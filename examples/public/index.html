@@ -136,10 +136,6 @@
     <script type="module">
       import crypt from './crypto.js';
 
-      $(window).on('load', function () {
-        console.log('Window loaded');
-      });
-
       $('#isEncrypted').change(function () {
         $('.encryption-block').toggle();
 
@@ -163,20 +159,17 @@
             const serverPart = jqXHR.getResponseHeader('Key-Server-Part');
             const userPartEn = jqXHR.getResponseHeader('Key-User-Part');
             const userPass = 'test@1234';
-            console.log(userPartEn);
+
             const userPart = await crypt.decrypt(
               userPartEn,
               serverPart,
               userPass
             );
-            console.log(userPart);
-
             console.log(serverPart + userPart);
             console.log(encryptionKey);
           },
           error: function (jqXHR, textStatus, errorThrown) {
             console.error('Error during download:', errorThrown);
-            // alert("File download failed. Please try again.");
           }
         });
       });
