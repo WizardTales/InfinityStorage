@@ -33,8 +33,11 @@ const config = rc(prefix, {
     // user: 'test',
     // pass: 'test',
     secure: false,
-    from: 'test@test.de',
+    from: 'test@infinitystorage.com',
     author: 'Infinity-Speicher'
+  },
+  frontend: {
+    baseUrl: 'http://localhost:3000'
   },
   server: {
     listen: { port: 5000, host: '0.0.0.0' },

@@ -16,7 +16,7 @@ global.log = Fastify({ logger: loggerOptions.test }).log;
 /** @type {require('pg').Pool} */
 global.pool = null;
 global.userId = null;
-global.username = 'testuser';
+global.username = 'testuser@example.com';
 global.storageId = uuid();
 
 /** @type {MClient} */
