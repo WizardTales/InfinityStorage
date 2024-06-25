@@ -27,6 +27,15 @@ function translate (key, obj) {
 
 const config = rc(prefix, {
   env: 'production',
+  email: {
+    host: 'localhost',
+    port: 1025,
+    // user: 'test',
+    // pass: 'test',
+    secure: false,
+    from: 'test@test.de',
+    author: 'Infinity-Speicher'
+  },
   server: {
     listen: { port: 5000, host: '0.0.0.0' },
     cors: {}
