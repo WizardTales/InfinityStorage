@@ -82,7 +82,8 @@ const config = rc(prefix, {
   },
   sp: {
     providesAge: true,
-    domain: 'wizardtales.com'
+    domain: 'wizardtales.com',
+    passResetExpAfter: 1 // hours
   },
   file: {
     lockDuration: '5' // seconds
