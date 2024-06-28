@@ -27,6 +27,18 @@ function translate (key, obj) {
 
 const config = rc(prefix, {
   env: 'production',
+  email: {
+    host: 'localhost',
+    port: 1025,
+    // user: 'test',
+    // pass: 'test',
+    secure: false,
+    from: 'test@infinitystorage.com',
+    author: 'Infinity-Speicher'
+  },
+  frontend: {
+    baseUrl: 'http://localhost:3000'
+  },
   server: {
     listen: { port: 5000, host: '0.0.0.0' },
     cors: {}
@@ -70,7 +82,8 @@ const config = rc(prefix, {
   },
   sp: {
     providesAge: true,
-    domain: 'wizardtales.com'
+    domain: 'wizardtales.com',
+    passResetExpAfter: 1 // hours
   },
   file: {
     lockDuration: '5' // seconds
