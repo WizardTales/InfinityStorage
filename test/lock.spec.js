@@ -1,5 +1,4 @@
 import { describe, it, before, after } from 'mocha';
-import SQL from 'sql-template-tag';
 import fs from 'fs';
 import path from 'path';
 import { createFile, deleteFile, lock, unlock } from '../lib/services/file.js';
@@ -31,8 +30,7 @@ describe('file locking service', function (done) {
       file
     };
 
-    const { code, data, msg } = await createFile(
-      global.log,
+    const newFile = await createFile(
       pool,
       minioClient,
       dummyFile,
@@ -40,9 +38,9 @@ describe('file locking service', function (done) {
       storageId
     );
 
-    assert.equal(code, 200, msg);
+    assert.ok(!!newFile);
 
-    fileId = data.id;
+    fileId = newFile.id;
   });
 
   after(async function () {

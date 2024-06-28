@@ -53,7 +53,7 @@ before(async function () {
   await global.pool.query(SQL`INSERT INTO "storage" ("id", "ownerId", "data")
   VALUES (${global.storageId}, ${global.userId}, '{}')`);
 
-  console.log('===== INITIALIZED =====');
+  global.log.info('===== INITIALIZED =====');
 });
 
 after(async function () {
@@ -63,5 +63,5 @@ after(async function () {
   await global.pool.query(
     SQL`DELETE FROM "directory" WHERE path = ${'/global/' + global.username}`
   );
-  console.log('Testing complete');
+  global.log.info('===== COMPLETED =====');
 });

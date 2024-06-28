@@ -40,11 +40,7 @@ describe('Version', function () {
       file: file2
     };
 
-    const {
-      code,
-      data: { id }
-    } = await createFile(
-      global.log,
+    const newFile = await createFile(
       pool,
       minioClient,
       dummyFile,
@@ -52,9 +48,9 @@ describe('Version', function () {
       storageId
     );
 
-    assert.equal(code, 200);
+    assert.ok(!!newFile);
 
-    fileId = id;
+    fileId = newFile.id;
   });
 
   after(async function () {
@@ -73,7 +69,6 @@ describe('Version', function () {
 
   it('should update a file', async function () {
     const updatedFile = await updateFile(
-      global.log,
       pool,
       minioClient,
       fileId,
@@ -82,8 +77,8 @@ describe('Version', function () {
       storageId
     );
 
-    assert.equal(updatedFile.code, 200);
-    assert.equal(updatedFile.data.version, 1);
+    assert.ok(updatedFile);
+    assert.equal(updatedFile.version, 1);
   });
 
   it('should get specific version of file', async function () {

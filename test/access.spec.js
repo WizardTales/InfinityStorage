@@ -11,6 +11,7 @@ let fileId;
 const user2Id = uuid();
 const username2 = 'otheruser';
 let minioClient;
+const filename = 'dummyfile-access.txt';
 
 describe('Access service', function () {
   before(async function () {
@@ -25,14 +26,13 @@ describe('Access service', function () {
     const file = fs.createReadStream(filePath, { encoding: 'utf-8' });
 
     const dummyFile = {
-      filename: 'dummyfile.txt',
+      filename,
       mimetype: 'plain/text',
       fields: { fileParent: { value: 'testing' } },
       file
     };
 
-    const { code, data, msg } = await createFile(
-      global.log,
+    const newFile = await createFile(
       global.pool,
       global.mClient,
       dummyFile,
@@ -40,9 +40,9 @@ describe('Access service', function () {
       global.storageId
     );
 
-    assert.equal(code, 200, msg);
+    assert.ok(newFile);
 
-    fileId = data.id;
+    fileId = newFile.id;
   });
 
   after(async function () {
